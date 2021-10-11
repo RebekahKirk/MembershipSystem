@@ -25,6 +25,6 @@
     <Folder Include="Middleware\Responses\" />
     <Folder Include="Middleware\Requests\" />
     <Folder Include="Middleware\Repositories\" />
-    <Folder Include="Scripts\" />
+    <Folder Include="Script\" />
   </ItemGroup>
 </Project>
