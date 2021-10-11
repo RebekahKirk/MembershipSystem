@@ -7,11 +7,21 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using AutoMapper;
 
-namespace MembershipSystem
+namespace MembershipSystem.Functions
 {
-    public static class EndpointFunctions
+    public class EndpointFunctions
     {
-        [FunctionName("Function1")]
-       
+        private readonly IMapper _mapper;
+        private readonly ILogger<EndpointFunctions> _logger;
+
+        public EndpointFunctions(IMapper mapper, ILogger<EndpointFunctions> logger)
+        {
+            this._logger = logger;
+            this._mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        }
+
+        //[FunctionName("Function1")]
+    }
 }
