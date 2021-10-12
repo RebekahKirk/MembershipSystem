@@ -27,10 +27,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\ARM Templates\" />
-    <Folder Include="Middleware\Commands\" />
-    <Folder Include="Middleware\Mappers\" />
-    <Folder Include="Middleware\Services\" />
-    <Folder Include="Middleware\Responses\" />
-    <Folder Include="Middleware\Requests\" />
+    <Folder Include="MigrationScripts\" />
   </ItemGroup>
 </Project>
