@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using MembershipSystem.Helpers;
 using MembershipSystem.Middleware.Interfaces;
 using System;
