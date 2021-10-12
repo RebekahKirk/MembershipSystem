@@ -4,7 +4,17 @@
     <AzureFunctionsVersion>v3</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Script\**" />
+    <EmbeddedResource Remove="Script\**" />
+    <None Remove="Script\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Dapper" Version="2.0.90" />
+    <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.13" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
@@ -16,15 +26,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Helpers\" />
     <Folder Include="Infrastructure\ARM Templates\" />
     <Folder Include="Middleware\Commands\" />
-    <Folder Include="Middleware\Interfaces\" />
     <Folder Include="Middleware\Mappers\" />
     <Folder Include="Middleware\Services\" />
     <Folder Include="Middleware\Responses\" />
     <Folder Include="Middleware\Requests\" />
-    <Folder Include="Middleware\Repositories\" />
-    <Folder Include="Script\" />
   </ItemGroup>
 </Project>
