@@ -1,0 +1,28 @@
+﻿USE [contract-bfohpc]
+GO
+
+/****** Object:  Table [dbo].[EmployeeRecords]    Script Date: 12/10/2021 14:14:59 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[EmployeeRecords](
+	[RecordId] [int] IDENTITY(1,1) NOT NULL,
+	[EmployeeId] [varchar](50) NOT NULL,
+	[EmployeeName] [varchar](200) NOT NULL,
+	[EmployeeEmail] [varchar](200) NOT NULL,
+	[EmployeeMobileNumber] [int] NOT NULL,
+	[Pin] [int] NOT NULL,
+	[CardId] [varchar](16) NOT NULL,
+	[Balance] [int] NOT NULL,
+	[ModifiedBy] [varchar](200) NOT NULL,
+ CONSTRAINT [PK_EmployeeRecords] PRIMARY KEY CLUSTERED 
+(
+	[RecordId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
