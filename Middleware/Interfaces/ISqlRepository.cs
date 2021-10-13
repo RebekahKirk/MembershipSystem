@@ -1,3 +1,4 @@
+using MembershipSystem.Middleware.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,5 +9,6 @@ namespace MembershipSystem.Middleware.Interfaces
     public interface ISqlRepository
     {
         Task RegisterEmployeeAsync(string employeeId, string employeeName, string employeeEmail, int employeeMobileNumber, int pin, string cardId, int balance, string modifiedBy);
+        Task<EmployeeRecord> DatabaseLookupAsync(string cardId);
     }
 }

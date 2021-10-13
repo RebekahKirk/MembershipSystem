@@ -1,4 +1,5 @@
 ﻿using MembershipSystem.Middleware.Commands;
+using MembershipSystem.Middleware.Entities;
 using MembershipSystem.Middleware.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,12 @@ namespace MembershipSystem.Middleware.Services
         public async Task RegisterEmployee(RegisterEmployeeCommand command)
         {
             await _sqlRepository.RegisterEmployeeAsync(command.EmployeeId, command.EmployeeName, command.EmployeeEmail, command.EmployeeMobileNumber, command.Pin, command.CardId, command.Balance, command.ModifiedBy);
+        }
+
+        public async Task<EmployeeRecord> DatabaseRecord(string cardId)
+        {
+            var record = await _sqlRepository.DatabaseLookupAsync(cardId);
+            return record;
         }
     }
 }

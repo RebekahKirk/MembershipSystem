@@ -1,10 +1,12 @@
 using Dapper;
 using MembershipSystem.Helpers;
+using MembershipSystem.Middleware.Entities;
 using MembershipSystem.Middleware.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -44,5 +46,22 @@ namespace MembershipSystem.Middleware.Repositories
                     commandType: CommandType.StoredProcedure);
             }
         }
+
+        public async Task<EmployeeRecord> DatabaseLookupAsync(string cardId)
+        {
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+                var query = await sqlConnection.QueryAsync<EmployeeRecord>($"[dbo].[uspEmployeeRecordCrud]", new
+                {
+                    cardId = cardId,
+                    Mode = SaveModeHelper.Get
+                },
+                    commandType: CommandType.StoredProcedure);
+                return query.FirstOrDefault();
+            }
+
+        }
     }
 }
+    
