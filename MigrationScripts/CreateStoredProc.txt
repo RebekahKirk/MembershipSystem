@@ -1,16 +1,13 @@
 ﻿USE [contract-bfohpc]
 GO
-
-/****** Object:  StoredProcedure [dbo].[uspEmployeeRecordCrud]    Script Date: 12/10/2021 14:15:12 ******/
+/****** Object:  StoredProcedure [dbo].[uspEmployeeRecordCrud]    Script Date: 13/10/2021 14:42:42 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
 
 
-
-		CREATE PROCEDURE [dbo].[uspEmployeeRecordCrud]
+		ALTER PROCEDURE [dbo].[uspEmployeeRecordCrud]
 		 (
 		  @Mode VARCHAR(1) = 'L',
 		  @EmployeeId [NVARCHAR](50) = NULL,
@@ -30,5 +27,27 @@ GO
 			VALUES
 			(@EmployeeId,@EmployeeName,@EmployeeEmail,@EmployeeMobileNumber,@pin,@CardId,@Balance,@ModifiedBy)			  
 			END
-			
-GO
+			IF(@Mode = 'L')
+		    BEGIN
+				 SELECT *
+			  FROM [dbo].[EmployeeRecords]				  
+			END
+			IF (@Mode = 'G')
+			BEGIN
+			SELECT [EmployeeName]
+			  FROM [dbo].[EmployeeRecords] 
+			  where CardId = @CardId	
+			END
+			IF(@Mode = 'U')
+			BEGIN
+			Update [dbo].[EmployeeRecords]
+			Set
+			[Balance] = @Balance, [CardId] = @CardId, [Pin] = @pin
+		    Where [CardId] = @CardId	
+			END
+			IF(@Mode = 'B')
+			BEGIN
+			Select [Balance] from [dbo].[EmployeeRecords]
+		    Where [CardId] = @CardId
+			END
+

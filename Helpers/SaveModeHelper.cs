@@ -8,5 +8,7 @@ namespace MembershipSystem.Helpers
     {
         public const string Create = "C";
         public const string Get = "G";
+        public const string Update = "U";
+        public const string Balance = "B";
     }
 }

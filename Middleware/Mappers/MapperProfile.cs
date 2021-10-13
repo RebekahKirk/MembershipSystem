@@ -15,6 +15,7 @@ namespace MembershipSystem.Middleware.Mappers
         {
             CreateMap<RegisterEmployeeRequest, RegisterEmployeeCommand>();
             CreateMap<EmployeeRecord, EmployeeRecordResponse>();
+            CreateMap<TopUpCardRequest, TopUpCardCommand>();
         }
     }
 }
