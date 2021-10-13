@@ -62,6 +62,38 @@ namespace MembershipSystem.Middleware.Repositories
             }
 
         }
+        public async Task TopUpCardAsync(/*int pin,*/ string cardId, string balance)
+        {
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                await sqlConnection.ExecuteAsync($"[dbo].[uspEmployeeRecordCrud]", new
+                {
+                    //pin,
+                    cardId,
+                    balance,
+                    Mode = SaveModeHelper.Update
+                },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+        public async Task<string> GetBalanceAsync(string cardId)
+        {
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                var balance = await sqlConnection.ExecuteScalarAsync($"[dbo].[uspEmployeeRecordCrud]", new
+                {
+                    cardId,
+                    Mode = SaveModeHelper.Balance
+                },
+                    commandType: CommandType.StoredProcedure);
+
+                return balance.ToString();
+            }
+        }
     }
 }
     

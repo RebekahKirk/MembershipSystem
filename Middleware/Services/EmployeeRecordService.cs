@@ -26,5 +26,13 @@ namespace MembershipSystem.Middleware.Services
             var record = await _sqlRepository.DatabaseLookupAsync(cardId);
             return record;
         }
+
+        public async Task<string> TopUpCard(TopUpCardCommand command)
+        {
+            var currentBalance = await _sqlRepository.GetBalanceAsync(command.CardId);
+            var newBalance = Int32.Parse(currentBalance) + Int32.Parse(command.Amount);
+            await _sqlRepository.TopUpCardAsync(command.CardId, newBalance.ToString());
+            return newBalance.ToString();
+        }
     }
 }

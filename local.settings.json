@@ -1,0 +1,9 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "ConnectionString": "Server=(local);Database=contract-bfohpc;Trusted_Connection=True;Integrated Security=true"
+  },
+  "Host": {
+    "LocalHttpPort": 7071
+  }
+}

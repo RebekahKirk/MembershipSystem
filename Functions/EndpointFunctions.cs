@@ -65,5 +65,25 @@ namespace MembershipSystem.Functions
 
             return new OkObjectResult($"Hello, {response.EmployeeName}");
         }
+
+        [FunctionName("TopUpCard")]
+        public async Task<IActionResult> TopUpCard(
+            [HttpTrigger(AuthorizationLevel.Function, "put", Route = "topupcard")][FromBody] TopUpCardRequest request)
+        {
+
+            var command = _mapper.Map<TopUpCardCommand>(request);
+            command.Username = "system";
+            _logger.LogInformation("C# HTTP Trigger PUT - top up card");
+
+            try
+            {
+                var balance = await _employeeRecordService.TopUpCard(command);
+                return new OkObjectResult($"Top Up Sucessful - Your new balance is {balance}");
+            }
+            catch (System.Exception ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
+            }
+        }
     }
 }
