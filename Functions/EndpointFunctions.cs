@@ -11,6 +11,9 @@ using AutoMapper;
 using MembershipSystem.Middleware.Commands;
 using MembershipSystem.Middleware.Requests;
 using MembershipSystem.Middleware.Interfaces;
+using MembershipSystem.Middleware.Responses;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MembershipSystem.Functions
 {
@@ -29,7 +32,7 @@ namespace MembershipSystem.Functions
 
         [FunctionName("RegisterEmployee")]
         public async Task<IActionResult> RegisterEmployee(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "employeerecord")] [FromBody] RegisterEmployeeRequest request)
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "employeerecord")][FromBody] RegisterEmployeeRequest request)
         {
             var command = _mapper.Map<RegisterEmployeeCommand>(request);
             command.Username = "System";
@@ -43,7 +46,24 @@ namespace MembershipSystem.Functions
             {
                 return new BadRequestObjectResult(ex.Message);
             }
-            return new OkObjectResult(command.EmployeeId);
+            return new OkObjectResult($"Registration sucessful, welcome {command.EmployeeName}.");
+        }
+
+
+        [FunctionName("DatabaseLookup")]
+        public async Task<IActionResult> DatabaseLookup(
+             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "employeerecord/{cardId}")] HttpRequest req, string cardId)
+        {
+
+            _logger.LogInformation("C# HTTP trigger get employee by card id");
+
+            var record = await _employeeRecordService.DatabaseRecord(cardId);
+            if (record == null)
+                return new NotFoundObjectResult("Existing record not found in database, please register card.");
+
+            var response = _mapper.Map<EmployeeRecordResponse>(record);
+
+            return new OkObjectResult($"Hello, {response.EmployeeName}");
         }
     }
 }

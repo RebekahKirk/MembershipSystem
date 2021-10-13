@@ -7,5 +7,6 @@ namespace MembershipSystem.Helpers
     public static class SaveModeHelper
     {
         public const string Create = "C";
+        public const string Get = "G";
     }
 }
