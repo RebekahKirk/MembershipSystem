@@ -93,6 +93,22 @@ namespace MembershipSystem.Middleware.Repositories
                 return balance.ToString();
             }
         }
+        public async Task SpendOnCardAsync(/*int pin,*/ string cardId, string balance)
+        {
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                await sqlConnection.ExecuteAsync($"[dbo].[uspEmployeeRecordCrud]", new
+                {
+                    //pin,
+                    cardId,
+                    balance,
+                    Mode = SaveModeHelper.Update
+                },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }
     

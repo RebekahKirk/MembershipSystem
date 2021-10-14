@@ -12,5 +12,6 @@ namespace MembershipSystem.Middleware.Interfaces
         Task RegisterEmployee(RegisterEmployeeCommand command);
         Task<EmployeeRecord> DatabaseRecord(string cardId);
         Task<string> TopUpCard(TopUpCardCommand command);
+        Task<string> SpendOnCard(SpendOnCardCommand command);
     }
 }
