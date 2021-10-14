@@ -25,7 +25,7 @@ namespace MembershipSystem.Middleware.Repositories
             return _connectionString.ToString();
         }
 
-        public async Task RegisterEmployeeAsync(string employeeId, string employeeName, string employeeEmail, int employeeMobileNumber, int pin, string cardId, int balance, string modifiedBy)
+        public async Task RegisterEmployeeAsync(string employeeId, string employeeName, string employeeEmail, int employeeMobileNumber, int pin, string cardId, int balance)
         {
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
@@ -40,7 +40,6 @@ namespace MembershipSystem.Middleware.Repositories
                     pin,
                     cardId,
                     balance,
-                    modifiedBy,
                     Mode = SaveModeHelper.Create
                 },
                     commandType: CommandType.StoredProcedure);

@@ -13,6 +13,6 @@ namespace MembershipSystem.Middleware.Commands
         public int Pin { get; set; }
         public string CardId { get; set; }
         public int Balance { get; set; }
-        public string ModifiedBy { get; set; }
+
     }
 }

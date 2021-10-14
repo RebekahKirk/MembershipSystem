@@ -1,13 +1,16 @@
 ﻿USE [contract-bfohpc]
 GO
-/****** Object:  StoredProcedure [dbo].[uspEmployeeRecordCrud]    Script Date: 13/10/2021 14:42:42 ******/
+
+/****** Object:  StoredProcedure [dbo].[uspEmployeeRecordCrud]    Script Date: 14/10/2021 08:58:24 ******/
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
 
 
-		ALTER PROCEDURE [dbo].[uspEmployeeRecordCrud]
+
+		CREATE PROCEDURE [dbo].[uspEmployeeRecordCrud]
 		 (
 		  @Mode VARCHAR(1) = 'L',
 		  @EmployeeId [NVARCHAR](50) = NULL,
@@ -16,16 +19,15 @@ GO
 		  @EmployeeMobileNumber [int] = NULL,
 		  @Pin [INT] = NULL,
 		  @CardId [varchar](16) NULL,
-		  @Balance [INT] = NULL,
-		  @ModifiedBy [NVARCHAR] (200) = NULL
+		  @Balance [INT] = NULL
 		  )
 		 AS	
 			IF(@Mode = 'C')
 			BEGIN
 			INSERT INTO [dbo].[EmployeeRecords]
-			([EmployeeId], [EmployeeName], [EmployeeEmail], [EmployeeMobileNumber], [Pin], [CardId], [Balance], [ModifiedBy]) 
+			([EmployeeId], [EmployeeName], [EmployeeEmail], [EmployeeMobileNumber], [Pin], [CardId], [Balance]) 
 			VALUES
-			(@EmployeeId,@EmployeeName,@EmployeeEmail,@EmployeeMobileNumber,@pin,@CardId,@Balance,@ModifiedBy)			  
+			(@EmployeeId,@EmployeeName,@EmployeeEmail,@EmployeeMobileNumber,@pin,@CardId,@Balance)			  
 			END
 			IF(@Mode = 'L')
 		    BEGIN
@@ -42,7 +44,7 @@ GO
 			BEGIN
 			Update [dbo].[EmployeeRecords]
 			Set
-			[Balance] = @Balance, [CardId] = @CardId, [Pin] = @pin
+			[Balance] = @Balance, [CardId] = @CardId
 		    Where [CardId] = @CardId	
 			END
 			IF(@Mode = 'B')
@@ -50,4 +52,6 @@ GO
 			Select [Balance] from [dbo].[EmployeeRecords]
 		    Where [CardId] = @CardId
 			END
+GO
+
 

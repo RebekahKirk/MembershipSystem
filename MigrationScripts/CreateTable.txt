@@ -1,7 +1,7 @@
 ﻿USE [contract-bfohpc]
 GO
 
-/****** Object:  Table [dbo].[EmployeeRecords]    Script Date: 12/10/2021 14:14:59 ******/
+/****** Object:  Table [dbo].[EmployeeRecords]    Script Date: 14/10/2021 08:58:08 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -17,7 +17,6 @@ CREATE TABLE [dbo].[EmployeeRecords](
 	[Pin] [int] NOT NULL,
 	[CardId] [varchar](16) NOT NULL,
 	[Balance] [int] NOT NULL,
-	[ModifiedBy] [varchar](200) NOT NULL,
  CONSTRAINT [PK_EmployeeRecords] PRIMARY KEY CLUSTERED 
 (
 	[RecordId] ASC
