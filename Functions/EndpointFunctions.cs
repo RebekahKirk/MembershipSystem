@@ -72,13 +72,32 @@ namespace MembershipSystem.Functions
         {
 
             var command = _mapper.Map<TopUpCardCommand>(request);
-            command.Username = "system";
+            command.Username = "System";
             _logger.LogInformation("C# HTTP Trigger PUT - top up card");
 
             try
             {
                 var balance = await _employeeRecordService.TopUpCard(command);
                 return new OkObjectResult($"Top Up Sucessful - Your new balance is {balance}");
+            }
+            catch (System.Exception ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
+            }
+        }
+
+        [FunctionName("SpendOnCard")]
+        public async Task<IActionResult> SpendOnCard(
+            [HttpTrigger(AuthorizationLevel.Function, "put", Route = "spendoncard")][FromBody] SpendOnCardRequest request)
+        {
+            var command = _mapper.Map<SpendOnCardCommand>(request);
+            command.Username = "System";
+            _logger.LogInformation("C# HTTP Trigger PUT - top up card");
+
+            try
+            {
+                await _employeeRecordService.SpendOnCard(command);
+                return new OkObjectResult($"Payment complete, thank you.");
             }
             catch (System.Exception ex)
             {

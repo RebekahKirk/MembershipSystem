@@ -34,5 +34,21 @@ namespace MembershipSystem.Middleware.Services
             await _sqlRepository.TopUpCardAsync(command.CardId, newBalance.ToString());
             return newBalance.ToString();
         }
+
+        public async Task<string> SpendOnCard(SpendOnCardCommand command)
+        {
+            var currentBalance = await _sqlRepository.GetBalanceAsync(command.CardId);
+
+            if (Int32.Parse(command.Amount) > Int32.Parse(currentBalance))
+            {
+                throw new Exception("Your available balance is less than your required spend, please top up first.");
+            }
+            else
+            {
+                var newBalance = Int32.Parse(currentBalance) - Int32.Parse(command.Amount);
+                await _sqlRepository.SpendOnCardAsync(command.CardId, newBalance.ToString());
+                return newBalance.ToString();
+            }
+        }
     }
 }

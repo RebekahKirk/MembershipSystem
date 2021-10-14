@@ -12,5 +12,6 @@ namespace MembershipSystem.Middleware.Interfaces
         Task<EmployeeRecord> DatabaseLookupAsync(string cardId);
         Task TopUpCardAsync(/*int pin,*/ string cardId, string balance);
         Task<string> GetBalanceAsync(string cardId);
+        Task SpendOnCardAsync(/*int pin,*/ string cardId, string balance);
     }
 }
