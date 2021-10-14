@@ -1,7 +1,7 @@
 ﻿USE [contract-bfohpc]
 GO
 
-/****** Object:  StoredProcedure [dbo].[uspEmployeeRecordCrud]    Script Date: 14/10/2021 08:58:24 ******/
+/****** Object:  StoredProcedure [dbo].[uspEmployeeRecordCrud]    Script Date: 14/10/2021 13:47:05 ******/
 SET ANSI_NULLS ON
 GO
 
