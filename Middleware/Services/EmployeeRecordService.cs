@@ -18,7 +18,7 @@ namespace MembershipSystem.Middleware.Services
         }
         public async Task RegisterEmployee(RegisterEmployeeCommand command)
         {
-            await _sqlRepository.RegisterEmployeeAsync(command.EmployeeId, command.EmployeeName, command.EmployeeEmail, command.EmployeeMobileNumber, command.Pin, command.CardId, command.Balance, command.ModifiedBy);
+            await _sqlRepository.RegisterEmployeeAsync(command.EmployeeId, command.EmployeeName, command.EmployeeEmail, command.EmployeeMobileNumber, command.Pin, command.CardId, command.Balance);
         }
 
         public async Task<EmployeeRecord> DatabaseRecord(string cardId)
