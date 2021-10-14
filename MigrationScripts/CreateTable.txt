@@ -1,7 +1,7 @@
 ﻿USE [contract-bfohpc]
 GO
 
-/****** Object:  Table [dbo].[EmployeeRecords]    Script Date: 14/10/2021 08:58:08 ******/
+/****** Object:  Table [dbo].[EmployeeRecords]    Script Date: 14/10/2021 13:46:47 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -23,5 +23,3 @@ CREATE TABLE [dbo].[EmployeeRecords](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
-
