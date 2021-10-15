@@ -14,6 +14,9 @@ using MembershipSystem.Middleware.Interfaces;
 using MembershipSystem.Middleware.Responses;
 using System.Collections.Generic;
 using System.Linq;
+using MembershipSystem.Middleware.Entities;
+using System.Net.Http;
+using MembershipSystem.Utilities;
 
 namespace MembershipSystem.Functions
 {
@@ -34,6 +37,18 @@ namespace MembershipSystem.Functions
         public async Task<IActionResult> RegisterEmployee(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = "employeerecord")][FromBody] RegisterEmployeeRequest request)
         {
+            var payloadParser = new PayloadParser();
+
+            if (!payloadParser.CheckRegistrationPayload(request))
+            {
+                HttpResponseMessage msg = new HttpResponseMessage
+                {
+                    StatusCode = System.Net.HttpStatusCode.BadRequest,
+                    ReasonPhrase = "Missing data – error "
+                };
+                return new BadRequestObjectResult(msg.ReasonPhrase);
+            }
+
             var command = _mapper.Map<RegisterEmployeeCommand>(request);
             command.Username = "System";
             _logger.LogInformation("C# Trigger create new employee record in database");
