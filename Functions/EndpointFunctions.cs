@@ -35,7 +35,7 @@ namespace MembershipSystem.Functions
 
         [FunctionName("RegisterEmployee")]
         public async Task<IActionResult> RegisterEmployee(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "employeerecord")][FromBody] RegisterEmployeeRequest request)
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "registeremployee")][FromBody] RegisterEmployeeRequest request)
         {
             var payloadParser = new PayloadParser();
 
@@ -67,7 +67,7 @@ namespace MembershipSystem.Functions
 
         [FunctionName("DatabaseLookup")]
         public async Task<IActionResult> DatabaseLookup(
-             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "employeerecord/{cardId}")] HttpRequest req, string cardId)
+             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "databaselookup/{cardId}")] HttpRequest req, string cardId)
         {
 
             _logger.LogInformation("C# HTTP trigger get employee by card id");
@@ -141,6 +141,22 @@ namespace MembershipSystem.Functions
             {
                 return new BadRequestObjectResult(ex.Message);
             }
+        }
+
+        [FunctionName("Logout")]
+        public async Task<IActionResult> Logout(
+             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "logout/{cardId}")] HttpRequest req, string cardId)
+        {
+
+            _logger.LogInformation("C# HTTP trigger end employee session by logging out");
+
+            var record = await _employeeRecordService.DatabaseRecord(cardId);
+            //if (record == null)
+            //    return new NotFoundObjectResult("Existing record not found in database, please register card.");
+
+            var response = _mapper.Map<EmployeeRecordResponse>(record);
+
+            return new OkObjectResult($"Goodbye, {response.EmployeeName}");
         }
     }
 }
