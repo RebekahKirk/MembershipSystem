@@ -1,6 +1,6 @@
 ﻿USE [contract-bfohpc]
 GO
-/****** Object:  StoredProcedure [dbo].[uspEmployeeRecordCrud]    Script Date: 15/10/2021 08:29:55 ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8,14 +8,14 @@ GO
 
 
 
-		ALTER PROCEDURE [dbo].[uspEmployeeRecordCrud]
+		CREATE PROCEDURE [dbo].[uspEmployeeRecordCrud]
 		 (
 		  @Mode VARCHAR(1) = 'L',
 		  @EmployeeId [NVARCHAR](50) = NULL,
 		  @EmployeeName [NVARCHAR](200) = NULL,
 		  @EmployeeEmail [NVARCHAR](200) = NULL,
 		  @EmployeeMobileNumber [NVARCHAR](50) = NULL,
-		  @Pin [INT] = NULL,
+		  @Pin [NVARCHAR](4) = NULL,
 		  @CardId [varchar](16) NULL,
 		  @Balance [INT] = NULL
 		  )
