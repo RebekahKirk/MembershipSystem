@@ -31,7 +31,7 @@ namespace MembershipSystem.Middleware.Services
         {
             var currentBalance = await _sqlRepository.GetBalanceAsync(command.CardId);
             var newBalance = Int32.Parse(currentBalance) + Int32.Parse(command.Amount);
-            await _sqlRepository.TopUpCardAsync(command.CardId, newBalance.ToString());
+            await _sqlRepository.TopUpCardAsync(command.Pin, command.CardId, newBalance.ToString());
             return newBalance.ToString();
         }
 
@@ -46,7 +46,7 @@ namespace MembershipSystem.Middleware.Services
             else
             {
                 var newBalance = Int32.Parse(currentBalance) - Int32.Parse(command.Amount);
-                await _sqlRepository.SpendOnCardAsync(command.CardId, newBalance.ToString());
+                await _sqlRepository.SpendOnCardAsync(command.Pin, command.CardId, newBalance.ToString());
                 return newBalance.ToString();
             }
         }

@@ -1,7 +1,7 @@
 ﻿USE [contract-bfohpc]
 GO
 
-/****** Object:  Table [dbo].[EmployeeRecords]    Script Date: 14/10/2021 13:46:47 ******/
+/****** Object:  Table [dbo].[EmployeeRecords]    Script Date: 15/10/2021 08:29:30 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -13,7 +13,7 @@ CREATE TABLE [dbo].[EmployeeRecords](
 	[EmployeeId] [varchar](50) NOT NULL,
 	[EmployeeName] [varchar](200) NOT NULL,
 	[EmployeeEmail] [varchar](200) NOT NULL,
-	[EmployeeMobileNumber] [int] NOT NULL,
+	[EmployeeMobileNumber] [varchar](50) NOT NULL,
 	[Pin] [int] NOT NULL,
 	[CardId] [varchar](16) NOT NULL,
 	[Balance] [int] NOT NULL,

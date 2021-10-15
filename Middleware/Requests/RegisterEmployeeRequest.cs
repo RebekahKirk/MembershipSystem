@@ -17,7 +17,7 @@ namespace MembershipSystem.Middleware.Requests
         public string EmployeeEmail { get; set; }
 
         [JsonProperty("pin")]
-        public int Pin { get; set; }
+        public string Pin { get; set; }
 
         [JsonProperty("cardid")]
         public string CardId { get; set; }
@@ -25,7 +25,7 @@ namespace MembershipSystem.Middleware.Requests
         [JsonProperty("balance")]
         public int Balance { get; set; }
         [JsonProperty("employeemobilenumber")]
-        public int EmployeeMobileNumber { get; set; }
+        public string EmployeeMobileNumber { get; set; }
     }
 }
 

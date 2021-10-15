@@ -8,7 +8,7 @@ namespace MembershipSystem.Middleware.Requests
     public class TopUpCardRequest
     {
         [JsonProperty("pin")]
-        public int Pin { get; set; }
+        public string Pin { get; set; }
         [JsonProperty("cardid")]
         public string CardId { get; set; }
         [JsonProperty("balance")]

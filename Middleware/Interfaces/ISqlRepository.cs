@@ -8,10 +8,10 @@ namespace MembershipSystem.Middleware.Interfaces
 {
     public interface ISqlRepository
     {
-        Task RegisterEmployeeAsync(string employeeId, string employeeName, string employeeEmail, int employeeMobileNumber, int pin, string cardId, int balance);
+        Task RegisterEmployeeAsync(string employeeId, string employeeName, string employeeEmail, string employeeMobileNumber, string pin, string cardId, int balance);
         Task<EmployeeRecord> DatabaseLookupAsync(string cardId);
-        Task TopUpCardAsync(/*int pin,*/ string cardId, string balance);
+        Task TopUpCardAsync(string pin, string cardId, string balance);
         Task<string> GetBalanceAsync(string cardId);
-        Task SpendOnCardAsync(/*int pin,*/ string cardId, string balance);
+        Task SpendOnCardAsync(string pin, string cardId, string balance);
     }
 }
