@@ -12,5 +12,6 @@ How to run the solution:
 3. Use the migration scripts which can be found in the Github repository to create the table and stored procedure in SQL.
 4. Use command window to clone the git repository and download a local copy of the solution. 
 5. In the command window, change directory (CD) into the project folder and use FUNC start --csharp to run the solution. 
+Use Ctrl C then Y on your keyboard to stop the functions from running.
 
 Tests are to be carried out using Postman. A new collection can be opened for this solution and a new request for each of the tests detailed on the test plan can becompleted manually or the .json file provided can be imported directly into Postman.
