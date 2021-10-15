@@ -19,28 +19,28 @@ namespace MembershipSystem.Utilities
             return true;
         }
 
-//        //        //public bool CheckTopUpPayload(TopUpCard message)
-//        //        //{
-//        //        //    if (message == null)
-//        //        //        return false;
+        public bool CheckTopUpPayload(TopUpCardRequest message)
+        {
+            if (message == null)
+                return false;
 
-//        //        //    if (message.Pin == null || message.CardId == null)
-//        //        //        return false;
+            if (message.Pin == null || message.CardId == null)
+                return false;
 
-//        //        //    return true;
-//        //        //}
+            return true;
+        }
 
-//        //        //public bool CheckSpendPayload(SpendOnCard message)
-//        //        //{
-//        //        //    if (message == null)
-//        //        //        return false;
+        public bool CheckSpendPayload(SpendOnCardRequest message)
+        {
+            if (message == null)
+                return false;
 
-//        //        //    if (message.Pin == null || message.CardId == null)
-//        //        //        return false;
+            if (message.Pin == null || message.CardId == null)
+                return false;
 
-//        //        //    return true;
-//        //        //}
-//        //    }
+            return true;
+        }
+    }
 
 }
-}
+

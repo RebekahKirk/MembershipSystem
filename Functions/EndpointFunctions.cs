@@ -44,7 +44,7 @@ namespace MembershipSystem.Functions
                 HttpResponseMessage msg = new HttpResponseMessage
                 {
                     StatusCode = System.Net.HttpStatusCode.BadRequest,
-                    ReasonPhrase = "Missing data – error "
+                    ReasonPhrase = "Registration unsucessful due to missing information."
                 };
                 return new BadRequestObjectResult(msg.ReasonPhrase);
             }
@@ -85,6 +85,17 @@ namespace MembershipSystem.Functions
         public async Task<IActionResult> TopUpCard(
             [HttpTrigger(AuthorizationLevel.Function, "put", Route = "topupcard")][FromBody] TopUpCardRequest request)
         {
+            var payloadParser = new PayloadParser();
+
+            if (!payloadParser.CheckTopUpPayload(request))
+            {
+                HttpResponseMessage msg = new HttpResponseMessage
+                {
+                    StatusCode = System.Net.HttpStatusCode.BadRequest,
+                    ReasonPhrase = "Top up unsucessful due to missing Pin."
+                };
+                return new BadRequestObjectResult(msg.ReasonPhrase);
+            }
 
             var command = _mapper.Map<TopUpCardCommand>(request);
             command.Username = "System";
@@ -105,6 +116,18 @@ namespace MembershipSystem.Functions
         public async Task<IActionResult> SpendOnCard(
             [HttpTrigger(AuthorizationLevel.Function, "put", Route = "spendoncard")][FromBody] SpendOnCardRequest request)
         {
+            var payloadParser = new PayloadParser();
+
+            if (!payloadParser.CheckSpendPayload(request))
+            {
+                HttpResponseMessage msg = new HttpResponseMessage
+                {
+                    StatusCode = System.Net.HttpStatusCode.BadRequest,
+                    ReasonPhrase = "Payment unsucessful due to missing Pin."
+                };
+                return new BadRequestObjectResult(msg.ReasonPhrase);
+            }
+
             var command = _mapper.Map<SpendOnCardCommand>(request);
             command.Username = "System";
             _logger.LogInformation("C# HTTP Trigger PUT - top up card");
