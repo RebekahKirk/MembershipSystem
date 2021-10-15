@@ -25,7 +25,7 @@ namespace MembershipSystem.Middleware.Repositories
             return _connectionString.ToString();
         }
 
-        public async Task RegisterEmployeeAsync(string employeeId, string employeeName, string employeeEmail, int employeeMobileNumber, int pin, string cardId, int balance)
+        public async Task RegisterEmployeeAsync(string employeeId, string employeeName, string employeeEmail, string employeeMobileNumber, string pin, string cardId, int balance)
         {
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
@@ -61,7 +61,7 @@ namespace MembershipSystem.Middleware.Repositories
             }
 
         }
-        public async Task TopUpCardAsync(/*int pin,*/ string cardId, string balance)
+        public async Task TopUpCardAsync(string pin, string cardId, string balance)
         {
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
@@ -69,7 +69,7 @@ namespace MembershipSystem.Middleware.Repositories
 
                 await sqlConnection.ExecuteAsync($"[dbo].[uspEmployeeRecordCrud]", new
                 {
-                    //pin,
+                    pin,
                     cardId,
                     balance,
                     Mode = SaveModeHelper.Update
@@ -93,7 +93,7 @@ namespace MembershipSystem.Middleware.Repositories
                 return balance.ToString();
             }
         }
-        public async Task SpendOnCardAsync(/*int pin,*/ string cardId, string balance)
+        public async Task SpendOnCardAsync(string pin, string cardId, string balance)
         {
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
@@ -101,7 +101,7 @@ namespace MembershipSystem.Middleware.Repositories
 
                 await sqlConnection.ExecuteAsync($"[dbo].[uspEmployeeRecordCrud]", new
                 {
-                    //pin,
+                    pin,
                     cardId,
                     balance,
                     Mode = SaveModeHelper.Update
